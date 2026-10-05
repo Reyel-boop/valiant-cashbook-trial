@@ -2271,7 +2271,7 @@ VC.views.login = {
    SQLite comes from sql.js; records are saved to this browser's IndexedDB.
    scripts/build-trial.js inserts the server modules where the MODULES marker is. */
 const VCTrial = (() => {
-  const TRIAL_MS = 5 * 24 * 60 * 60 * 1000;
+  const TRIAL_MS = 3 * 24 * 60 * 60 * 1000;
   const KEEP_BACKUPS = 10;
   const pad = (n) => String(n).padStart(2, '0');
 
@@ -3912,7 +3912,7 @@ module.exports = { createApi, publicUser };
     const url = new URL(href, 'http://trial.local/');
     if (expired()) {
       showEnded();
-      throw new HttpError(403, 'The 5-day trial has ended.');
+      throw new HttpError(403, 'The 3-day trial has ended.');
     }
     const session = sessions.lookup(currentToken);
     const user = session ? store.get('SELECT * FROM users WHERE id = ? AND active = 1', session.userId) : null;
@@ -3998,7 +3998,7 @@ module.exports = { createApi, publicUser };
     el.className = 'trial-ended';
     el.innerHTML = `<div class="trial-card">
       <img src="${VC_LOGO}" alt="Valiant Technical Institute logo">
-      <h1>Your 5-day trial has ended</h1>
+      <h1>Your 3-day trial has ended</h1>
       <p>You started the online trial on ${when(startedAt)}. It closed on ${when(expiresAt())}.</p>
       <p>The full Valiant Cashbook is installed on the cashier's computer. It runs without internet or a subscription, and keeps daily backups on a USB drive.</p>
       <p class="trial-note">Ask the developer for the installed version to keep using it.</p>
